@@ -1,5 +1,13 @@
-import sum from "../hi.js";
+//import { createBlock } from "../index.js"
 
-test("adds 1 + 2 to equal 3", () => {
-  expect(sum(1, 2)).toBe(3);
+test("Check if div block is empty", () => {
+  document.body.innerHTML = `
+    <div id='text-container'>
+      <div id='text-block'></div>
+    </div>
+  `;
+  const container = document.getElementById("text-container");
+  const block = document.getElementById("text-block");
+  block.click();
+  expect(container.childElementCount).toEqual(2);
 });

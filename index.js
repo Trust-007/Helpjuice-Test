@@ -1,7 +1,7 @@
 const textContainer = document.getElementById("text-container");
 
 // logic for creating text blocks
-const createBlock = () => {
+export const createBlock = () => {
   const blockContainer = document.createElement("div");
   const id = new Date();
   blockContainer.id = id;
@@ -13,7 +13,7 @@ const createBlock = () => {
   newBlock.spellcheck = true;
   window.setTimeout(() => newBlock.focus(), 0);
   newBlock.onkeydown = detectChange;
-  newBlock.onkeyup = headingOneLogic;
+  newBlock.onkeyup = showOptions;
   blockContainer.appendChild(newBlock);
 
   const options = document.createElement("div");
@@ -30,8 +30,8 @@ const createBlock = () => {
   options.appendChild(heading5);
 
   const list = document.createElement("button");
-  const logo = document.createElement("div");
-  logo.innerHTML = "T";
+  const logo = document.createElement("img");
+  logo.src = "https://cdn-icons-png.flaticon.com/128/0/99.png";
   logo.className = "logo";
   list.appendChild(logo);
 
@@ -57,8 +57,8 @@ window.addEventListener("load", () => {
   createBlock();
 });
 
-// logic to detect changes on text block
-const detectChange = (e) => {
+// logic to know when to delete block
+export const detectChange = (e) => {
   const child = e.target.parentElement;
   if (e.target.innerHTML === "" && e.key === "Backspace") {
     if (child.parentElement.childElementCount === 1) {
@@ -77,18 +77,17 @@ const detectChange = (e) => {
   }
 };
 
-// heading logic
-const headingOneLogic = (e) => {
+//
+export const showOptions = (e) => {
   const element = e.target.nextSibling;
   if (e.target.innerHTML.includes("/1")) {
     element.style.display = "block";
     element.childNodes[3].focus();
-    element.childNodes[3].firstChild.className = "focus";
   }
 };
 
 // onclick heading logic
-const makeHeadingOne = (e) => {
+export const makeHeadingOne = (e) => {
   const element = e.target.parentElement.parentElement;
   if (element.parentElement.previousSibling.innerHTML.indexOf("/1") === 0) {
     element.parentElement.previousSibling.innerHTML = "";
@@ -132,7 +131,7 @@ const makeHeadingOne = (e) => {
 };
 
 //onkeydown heading logic
-const makeHeading = (e) => {
+export const makeHeading = (e) => {
   const element = e.target.parentElement;
   if (element.previousSibling.innerHTML.indexOf("/1") === 0) {
     element.previousSibling.innerHTML = "";
@@ -174,7 +173,6 @@ textContainer.onkeydown = (event) => {
     event.preventDefault();
     event.target.parentElement.style.display = "none";
     event.target.parentElement.previousSibling.focus();
-    //event.target.parentElement.previousSibling.innerHTML = "";
   } else if (event.key === "Enter" && event.target.tagName === "DIV") {
     event.preventDefault();
     createBlock();
