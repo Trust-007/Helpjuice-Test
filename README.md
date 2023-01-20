@@ -141,6 +141,7 @@ To run tests, run the following command:
 - [ ] **[Store text in a database or local storage so as not to lose on refresh]**
 - [ ] **[Add more text modify options]**
 - [ ] **[Add draggable feature]**
+- [ ] **[Add tests]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
